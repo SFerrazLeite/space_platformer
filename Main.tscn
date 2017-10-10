@@ -5,7 +5,7 @@
 [ext_resource path="res://PlayerController.gd" type="Script" id=3]
 [ext_resource path="res://platformer-pack-redux-360-assets/PNG/Players/128x256/Pink/alienPink_front.png" type="Texture" id=4]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 11.6364
@@ -53,6 +53,7 @@ scroll/ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
+visibility/visible = false
 motion/scale = Vector2( 1, 1 )
 motion/offset = Vector2( 0, 0 )
 motion/mirroring = Vector2( 0, 0 )
@@ -71,7 +72,7 @@ offset = Vector2( 1024, 0 )
 
 transform/pos = Vector2( 252, 116 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 3.14286, 0, 0, 4.33088, 0, 18 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -130,7 +131,7 @@ __meta__ = {
 
 transform/pos = Vector2( 0, 18 )
 transform/scale = Vector2( 3.14286, 4.33088 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
