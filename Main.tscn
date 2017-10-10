@@ -1,0 +1,180 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://TileSets/ground.tres" type="TileSet" id=1]
+[ext_resource path="res://platformer-pack-redux-360-assets/PNG/Backgrounds/blue_shroom.png" type="Texture" id=2]
+[ext_resource path="res://PlayerController.gd" type="Script" id=3]
+[ext_resource path="res://platformer-pack-redux-360-assets/PNG/Players/128x256/Pink/alienPink_front.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 11.6364
+height = 4.90048
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 13.0285, 10 )
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+
+transform/pos = Vector2( -192, 0 )
+transform/scale = Vector2( 0.5, 0.5 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 128, 128 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( -458750, 1073741931, -393214, -1610612660, -327678, -1610612660, -262142, -1610612660, -196606, -1610612660, -131070, -1610612660, -65534, -1610612660, 1, -1610612660, 65537, -1610612660, 131073, -1610612660, 196610, -1610612660, 196620, 7, 196621, 107, 196622, 107, 196623, 107, 196624, 107, 196625, 101, 262146, -1610612660, 327682, -1610612660, 327699, 42, 327700, 69, 327703, 83, 327704, 35, 393218, -1610612660, 458755, 76, 458756, 76, 458757, 76, 458758, 76, 458759, 76, 458760, 76, 458761, 76, 458762, 76, 458763, 76, 458764, 76, 458765, 76, 458766, 76, 458767, 76, 458768, 76, 458769, 76, 458770, 76, 524291, 70, 524292, 70, 524293, 70, 524294, 70, 524295, 70, 524296, 70, 524297, 70, 524298, 70, 524299, 70, 524300, 70, 524301, 70, 524302, 70, 524303, 70, 524304, 70, 524305, 70, 524306, 70, 524307, 80, 524308, 80, 524309, 80, 524310, 80, 524311, 80, 524312, 80, 589827, 70, 589828, 70, 589829, 70, 589830, 70, 589831, 70, 589832, 70, 589833, 70, 589834, 70, 589835, 70, 589836, 70, 589837, 70, 589838, 70, 589839, 70, 589840, 70, 589841, 70, 589842, 70 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+motion/scale = Vector2( 1, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+z/relative = false
+texture = ExtResource( 2 )
+
+[node name="Sprite 2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+
+texture = ExtResource( 2 )
+offset = Vector2( 1024, 0 )
+
+[node name="Player" type="RigidBody2D" parent="."]
+
+transform/pos = Vector2( 252, 116 )
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 3.14286, 0, 0, 4.33088, 0, 18 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 2
+mass = 1.0
+friction = 0.8
+bounce = 0.2
+gravity_scale = 10.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+visibility/visible = false
+transform/pos = Vector2( 0, 12 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Player"]
+
+texture = ExtResource( 4 )
+region = true
+region_rect = Rect2( 0, 100, 128, 158 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+transform/pos = Vector2( 0, 18 )
+transform/scale = Vector2( 3.14286, 4.33088 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="FeetLeft" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( -28, 36 )
+transform/scale = Vector2( 0.1875, 1.41115 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+layer_mask = 1
+type_mask = 15
+
+[node name="FeetRight" type="RayCast2D" parent="Player"]
+
+transform/pos = Vector2( 28, 36 )
+transform/scale = Vector2( 0.1875, 1.375 )
+enabled = true
+cast_to = Vector2( 0, 35 )
+layer_mask = 1
+type_mask = 15
+
+[node name="DeathLine" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 3044, 992 )
+transform/scale = Vector2( 95.0625, 1 )
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 2.46154, 0, 0, 2.76923, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathLine"]
+
+transform/scale = Vector2( 2.46154, 2.76923 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+
